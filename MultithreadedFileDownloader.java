@@ -22,6 +22,9 @@ public class MultithreadedFileDownloader {
             // 2. Pre-flight Check: Get file size and check for range support
             HttpURLConnection conn = (HttpURLConnection) new URL(fileURL).openConnection();
             conn.setRequestMethod("HEAD");
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
             long fileSize = conn.getContentLengthLong();
             String acceptRanges = conn.getHeaderField("Accept-Ranges");
             conn.disconnect();
@@ -216,3 +219,4 @@ public class MultithreadedFileDownloader {
         }
     }
 }
+
